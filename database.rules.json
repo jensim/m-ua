@@ -1,0 +1,28 @@
+{
+  "rules": {
+    ".read":"root.child('Users').child(auth.uid).child('role').child('name').val() === 'admin'",
+    ".write":"root.child('Users').child(auth.uid).child('role').child('name').val() === 'admin'",
+
+    "mutations":{
+      ".read": "auth !== null",
+      ".write":"root.child('Users').child(auth.uid).child('role').child('name').val() === 'admin'"
+    },
+
+    "communityMutations":{
+      ".read": "auth !== null",
+      ".write":"root.child('Users').child(auth.uid).child('role').child('name').val() === 'mod'",
+      "$mutation":{
+        ".write":"data.child('authorinfo').child('author').child(auth.uid).val() === auth.uid"
+      }
+    },
+
+    "Users":{
+      "$userKey":{
+        ".read":"auth.uid === $userKey",
+        "info":{
+          ".write":"auth.uid === $userKey"
+        }
+      }
+    }
+  }
+}
