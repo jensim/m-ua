@@ -1,6 +1,6 @@
-import { LoginButtonComponent } from './loginbutton.component';
+import { LoginButtonComponent } from './login-button.component';
 
-describe('LoginbuttonDirective', () => {
+describe('LoginButtonDirective', () => {
   it('should create an instance', () => {
     const directive = new LoginButtonComponent();
     expect(directive).toBeTruthy();
