@@ -3,7 +3,12 @@
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.5.0.
 
 [![Build Status](https://travis-ci.org/jensim/m-ua.svg?branch=master)](https://travis-ci.org/jensim/m-ua)
+
 [![Known Vulnerabilities](https://snyk.io/test/github/jensim/m-ua/badge.svg)](https://snyk.io/test/github/jensim/m-ua)
+[![bitHound Overall Score](https://www.bithound.io/github/jensim/m-ua/badges/score.svg)](https://www.bithound.io/github/jensim/m-ua)
+[![bitHound Dependencies](https://www.bithound.io/github/jensim/m-ua/badges/dependencies.svg)](https://www.bithound.io/github/jensim/m-ua/master/dependencies/npm)
+[![bitHound Dev Dependencies](https://www.bithound.io/github/jensim/m-ua/badges/devDependencies.svg)](https://www.bithound.io/github/jensim/m-ua/master/dependencies/npm)
+[![bitHound Code](https://www.bithound.io/github/jensim/m-ua/badges/code.svg)](https://www.bithound.io/github/jensim/m-ua)
 
 ## Development server
 
