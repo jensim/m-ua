@@ -1,6 +1,5 @@
 import {Component} from '@angular/core';
-import {AngularFireAuth} from 'angularfire2/auth';
-import * as firebase from 'firebase/app';
+import {LocalFireAuthService} from '../../service/localfireauth/local-fire-auth.service';
 
 @Component({
   selector: 'app-login-button',
@@ -8,46 +7,17 @@ import * as firebase from 'firebase/app';
   styleUrls: ['./login-button.component.css']
 })
 export class LoginButtonComponent {
+  public loginStateText = 'Login';
 
-  private provider = new firebase.auth.GoogleAuthProvider();
-  private user = null;
-  loginStateText = 'Login';
-
-  constructor(public af: AngularFireAuth) {
-
-    firebase.auth().onAuthStateChanged(function (user) {
-      if (user) {
-        this.user = user;
-        this.loginStateText = 'Log out';
-        console.info('User logged in');
-      } else {
-        this.user = null;
-        this.loginStateText = 'Login';
-        console.warn('User NOT loggeed in');
-      }
-    });
-
+  constructor(public myAuth: LocalFireAuthService) {
   }
 
   pressLogin($event: Event) {
     console.info('Button kicked.');
-    if (this.user === null) {
-      this.af.auth.signInWithPopup(this.provider).then(function (result) {
-        this.user = result.user;
-        console.info('logged in user: ' + result.user);
-      }).catch(function (err) {
-        if (err) {
-          console.error(err);
-        }
-      });
+    if (this.myAuth.isSignedIn()) {
+      this.myAuth.signOut();
     } else {
-      this.af.auth.signOut().then(function () {
-        console.info('logged out');
-      }).catch(function (err) {
-        if (err) {
-          console.error(err);
-        }
-      });
+      this.myAuth.signIn();
     }
   }
 }

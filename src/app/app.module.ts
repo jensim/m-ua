@@ -6,12 +6,14 @@ import {AngularFireAuth} from 'angularfire2/auth';
 import {AppComponent} from './app.component';
 import {LoginButtonComponent} from './components/loginbutton/login-button.component';
 import {firebaseConfig} from '../environments/firebase.config';
+import {LocalFireAuthService} from './service/localfireauth/local-fire-auth.service';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginButtonComponent
+    LoginButtonComponent,
+    LocalFireAuthService,
   ],
   imports: [
     BrowserModule,
