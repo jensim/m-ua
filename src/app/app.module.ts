@@ -7,6 +7,8 @@ import {AppComponent} from './app.component';
 import {LoginButtonComponent} from './components/loginbutton/login-button.component';
 import {firebaseConfig} from '../environments/firebase.config';
 import {LocalFireAuthService} from './service/localfireauth/local-fire-auth.service';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MatButtonModule, MatCheckboxModule, MatListModule} from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -14,8 +16,12 @@ import {LocalFireAuthService} from './service/localfireauth/local-fire-auth.serv
     LoginButtonComponent,
   ],
   imports: [
+    AngularFireModule.initializeApp(firebaseConfig),
+    BrowserAnimationsModule,
     BrowserModule,
-    AngularFireModule.initializeApp(firebaseConfig)
+    MatButtonModule,
+    MatListModule,
+    MatCheckboxModule,
   ],
   providers: [AngularFireAuth, LocalFireAuthService],
   bootstrap: [AppComponent]
