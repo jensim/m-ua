@@ -1,8 +1,14 @@
 language: node_js
-node_js:
-        "8"
-before_script:
-        - npm i -g @angular/cli
-script:
-        - ng build
+node_js: '8'
 
+before_script:
+  - npm i -g @angular/cli
+
+script:
+  - ng build
+
+deploy:
+  provider: firebase
+  token:
+    secure: zTSQbcu2KL3sJuFYynJsUApb8dAi6v9VJ6JeIHjQVmafqQOXtIlQcjla3pcG1J4Jw8WXeir33ebaIn1jQ/NAp2sP1Fmf7A3jrgiUo7OjxCZWGqfNnlYIcHCyevYxkCH+BABUTHi8lm7oQpgz6kxiltPuVmLjQ0Fe2mx8bVA1nIWrq9Cb9BSq/FS5epap2tWHa0QxFFg9zIBMOblty2PLdQl2yTJ3q7jrfcegJXFtmJdHzudqXDhjDTA+uqwHhiQGz3zWTNI682ZzG9mKgml/GdnTyOUkjZG9SMJB2x4WBKIIBx4RbQbTL62zedHQADQ5v4vKPRUQZbocThQzK5F5Ue3PXAzCUm9dIuikrPBmRYWbfBNqE/ZZS0XnxJFUSQZ5uwuv6OCUXpexi9xggiKscREm5QxLP4gG6i2OC1BFqicBCtSrimKrgy1eySZAgaHfNtYrbmrGTJ+XbmAEsLC3zbF217tnEZpywr6jDhKQ2iRXzPbTiDgMqn5qXPcbI7UljGHd+ep6CK5Jz/weT0Os52chz9JOsVz7kB2+2C/c52z2jkRd9kbWW/M2xHrO+RPAA8MWx52G6sigRVcjWQKihLdjtL/+I76AztGUteVuM2R0In07x8UgPP6D/g2lR4MDRzX5CEOdQyQm5Du0ok8n52vzfILCyRl+niO4GWs+2Jc=
+  project: m-ua
