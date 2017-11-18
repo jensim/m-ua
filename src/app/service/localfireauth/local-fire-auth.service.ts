@@ -22,7 +22,7 @@ export class LocalFireAuthService {
   }
 
   isSignedIn() {
-    return this.aFire.auth.currentUser === null;
+    return this.aFire.auth.currentUser !== null;
   }
 
   signIn() {
