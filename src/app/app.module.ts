@@ -8,18 +8,16 @@ import {LoginButtonComponent} from './components/loginbutton/login-button.compon
 import {firebaseConfig} from '../environments/firebase.config';
 import {LocalFireAuthService} from './service/localfireauth/local-fire-auth.service';
 
-
 @NgModule({
   declarations: [
     AppComponent,
     LoginButtonComponent,
-    LocalFireAuthService,
   ],
   imports: [
     BrowserModule,
     AngularFireModule.initializeApp(firebaseConfig)
   ],
-  providers: [AngularFireAuth],
+  providers: [AngularFireAuth, LocalFireAuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
