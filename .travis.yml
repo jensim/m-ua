@@ -1,8 +1,13 @@
 language: node_js
 node_js: '8'
 
+cache:
+  directories:
+    - node_modules
+    - /usr/lib/node_modules/@angular/cli/
+
 before_script:
-  - npm i -g @angular/cli
+  - npm list -g @angular/cli --depth=0 || npm i -g @angular/cli
 
 script:
   - ng build
