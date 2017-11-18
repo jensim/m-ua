@@ -1,13 +1,17 @@
 language: node_js
 node_js: '8'
 
+dist: trusty
+sudo: false
+
 cache:
   directories:
     - node_modules
     - /usr/lib/node_modules/@angular/cli/
 
 before_script:
-  - npm list -g @angular/cli --depth=0 || npm i -g @angular/cli
+  - "rm -rf dist"
+  - "npm list -g @angular/cli --depth=0 || npm i -g @angular/cli"
 
 script:
   - ng build
