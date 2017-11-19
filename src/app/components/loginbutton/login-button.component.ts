@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {AfterViewInit, ApplicationRef, Component} from '@angular/core';
 import {LocalFireAuthService} from '../../service/localfireauth/local-fire-auth.service';
 import {User} from 'firebase';
 
@@ -7,15 +7,19 @@ import {User} from 'firebase';
   templateUrl: './login-button.component.html',
   styleUrls: ['./login-button.component.css']
 })
-export class LoginButtonComponent {
-  loginState = {text: 'Log in'};
+export class LoginButtonComponent implements AfterViewInit {
+  private loginState = {text: 'Log in'};
 
-  constructor(public myAuth: LocalFireAuthService) {
+  constructor(public myAuth: LocalFireAuthService, public appRef: ApplicationRef) {
+  }
+
+  ngAfterViewInit(): void {
     this.registerAuthStatus();
   }
 
-  private registerAuthStatus() {
+  registerAuthStatus() {
     const state = this.loginState;
+    const appRef = this.appRef;
     this.myAuth.onAuthStateChanged(function (user: User) {
       if (user) {
         state.text = 'Log out ' + user.displayName;
@@ -24,27 +28,21 @@ export class LoginButtonComponent {
         state.text = 'Log in';
         console.info('LoginButtonComponent::user logged out');
       }
+      appRef.tick();
     });
   }
 
-  pressLogin($event: Event) {
-    const state = this.loginState;
+  pressLogin(event: Event) {
     console.debug('Button kicked.');
     if (this.myAuth.isSignedIn()) {
       this.myAuth.signOut(function (err) {
-        state.text = 'Log in';
         console.info('log out callback');
       });
     } else {
-      this.myAuth.signIn(function (err, user: User) {
+      this.myAuth.signIn(function (err) {
         console.info('logged in callback');
         if (err) {
           console.error(err);
-        }
-        if (user) {
-          state.text = 'Log out ' + user.displayName;
-        } else {
-          state.text = 'Log in';
         }
       });
     }
