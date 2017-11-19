@@ -10,7 +10,7 @@ export class LocalFireAuthService {
   constructor(public aFire: AngularFireAuth) {
   }
 
-  static onAuthStateChanged(callback) {
+  onAuthStateChanged(callback) {
     firebase.auth().onAuthStateChanged(callback);
   }
 
@@ -20,9 +20,9 @@ export class LocalFireAuthService {
 
   signIn(callback: Function) {
     if (this.aFire.auth.currentUser === null) {
-      console.debug('Logging in.');
+      console.info('Logging in.');
       this.aFire.auth.signInWithPopup(this.provider).then(function (result) {
-        console.debug('logged in user: ' + result.user.displayName);
+        console.info('logged in user: ' + result.user.displayName);
         callback(null, result.user);
       }).catch(function (err) {
         if (err) {
@@ -37,7 +37,7 @@ export class LocalFireAuthService {
 
   signOut(callback: Function) {
     this.aFire.auth.signOut().then(function () {
-      console.debug('logged out');
+      console.info('logged out');
       callback();
     }).catch(function (err) {
       if (err) {
