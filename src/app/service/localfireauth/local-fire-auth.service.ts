@@ -8,32 +8,26 @@ export class LocalFireAuthService {
   private provider = new firebase.auth.GoogleAuthProvider();
 
   constructor(public aFire: AngularFireAuth) {
-    firebase.auth().onAuthStateChanged(function (user) {
-      if (user) {
-        this.user = user;
-        this.loginStateText = 'Log out';
-        console.info('User logged in');
-      } else {
-        this.user = null;
-        this.loginStateText = 'Login';
-        console.warn('User NOT logged in');
-      }
-    });
+  }
+
+  static onAuthStateChanged(callback) {
+    firebase.auth().onAuthStateChanged(callback);
   }
 
   isSignedIn() {
     return this.aFire.auth.currentUser !== null;
   }
 
-  signIn() {
+  signIn(callback: Function) {
     if (this.aFire.auth.currentUser === null) {
-      console.info('Logging in.');
+      console.debug('Logging in.');
       this.aFire.auth.signInWithPopup(this.provider).then(function (result) {
-        this.user = result.user;
-        console.info('logged in user: ' + result.user);
+        console.debug('logged in user: ' + result.user.displayName);
+        callback(null, result.user);
       }).catch(function (err) {
         if (err) {
           console.error(err);
+          callback(err);
         }
       });
     } else {
@@ -41,12 +35,14 @@ export class LocalFireAuthService {
     }
   }
 
-  signOut() {
+  signOut(callback: Function) {
     this.aFire.auth.signOut().then(function () {
-      console.info('logged out');
+      console.debug('logged out');
+      callback();
     }).catch(function (err) {
       if (err) {
         console.error(err);
+        callback(err);
       }
     });
   }
