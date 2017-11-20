@@ -8,7 +8,7 @@ import {User} from 'firebase';
   styleUrls: ['./login-button.component.css']
 })
 export class LoginButtonComponent implements AfterViewInit {
-  private loginState = {text: 'Log in'};
+  loginState = {text: 'Log in'};
 
   constructor(public myAuth: LocalFireAuthService, public appRef: ApplicationRef) {
   }
