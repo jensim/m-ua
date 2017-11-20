@@ -11,6 +11,7 @@ cache:
 
 before_script:
   - "rm -rf dist"
+  - "./build-functions.sh"
   - "npm list -g @angular/cli --depth=0 || npm i -g @angular/cli"
 
 script:
